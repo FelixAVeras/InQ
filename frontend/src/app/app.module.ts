@@ -19,6 +19,11 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProfessionalComponent } from './professional/professional.component';
 import { CategoryComponent } from './category/category.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -29,12 +34,15 @@ import { CategoryComponent } from './category/category.component';
     AppointmentComponent,
     CustomerComponent,
     ProfessionalComponent,
-    CategoryComponent
+    CategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -42,7 +50,10 @@ import { CategoryComponent } from './category/category.component';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

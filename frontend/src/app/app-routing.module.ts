@@ -5,6 +5,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProfessionalComponent } from './professional/professional.component';
 import { CategoryComponent } from './category/category.component';
+import { AddCategoryComponent } from './category/add-category/add-category.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'dashboard', pathMatch:'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path:'customers', component: CustomerComponent },
   { path:'professionals', component: ProfessionalComponent },
   { path:'categories', component: CategoryComponent },
+  { path:'add-category', component: AddCategoryComponent },
 ];
 
 @NgModule({
