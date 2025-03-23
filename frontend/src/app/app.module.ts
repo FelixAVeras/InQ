@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProfessionalComponent } from './professional/professional.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProfessionalComponent } from './professional/professional.component';
     MasterlayoutComponent,
     AppointmentComponent,
     CustomerComponent,
-    ProfessionalComponent
+    ProfessionalComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
