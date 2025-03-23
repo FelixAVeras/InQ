@@ -42,6 +42,15 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/category/:categoryId', async (req, res) => {
+    try {
+      const appointments = await Appointment.find({ professional: { $in: await Professional.find({ category: req.params.categoryId }).select('_id') } });
+      res.send(appointments);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+});
+
 router.put('/:id', async (req, res) => {
     try {
         const db = req.dbClient.db('inqdb');
