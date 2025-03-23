@@ -5,16 +5,16 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-masterlayout',
+  templateUrl: './masterlayout.component.html',
+  styleUrls: ['./masterlayout.component.css']
 })
-export class AppComponent {
-  title = 'frontend';
-
+export class MasterlayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(map(result => result.matches), shareReplay());
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 }

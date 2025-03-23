@@ -5,11 +5,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" routerLinkActive="active"><mat-icon fontIcon="home"></mat-icon> Dashboard</a>
-      <a mat-list-item routerLink="/appointments" routerLinkActive="active"><mat-icon fontIcon="calendar_month"></mat-icon> Appointments</a>
-      <a mat-list-item routerLink="/professionals" routerLinkActive="active"><mat-icon fontIcon="group"></mat-icon> Professionals</a>
-      <a mat-list-item routerLink="/customers" routerLinkActive="active"><mat-icon fontIcon="person"></mat-icon> Customers</a>
-      <a mat-list-item routerLink="/" routerLinkActive="active"><mat-icon fontIcon="settings"></mat-icon> Settings</a>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,8 +20,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>InQ - Appointment system</span>
+      <span>frontend</span>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>
