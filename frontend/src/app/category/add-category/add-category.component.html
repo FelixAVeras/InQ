@@ -2,16 +2,16 @@
   <h2>Add Category</h2>
 
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Nombre</mat-label>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Name</mat-label>
       <input matInput formControlName="name">
       <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
-        El nombre es obligatorio
+        The name is required
       </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="outline">
-      <mat-label>Descripción</mat-label>
+      <mat-label>Description</mat-label>
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
   

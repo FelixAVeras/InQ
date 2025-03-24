@@ -24,6 +24,7 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatListModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

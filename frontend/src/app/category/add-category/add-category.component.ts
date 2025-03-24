@@ -26,11 +26,11 @@ export class AddCategoryComponent {
     if (this.categoryForm.valid) {
       this.categoryService.createCategory(this.categoryForm.value).subscribe(
         () => {
-          this.snackBar.open('Categoría creada correctamente', 'Cerrar', { duration: 3000 });
+          this.snackBar.open('Category create successfully', 'Close', { duration: 3000 });
           this.categoryForm.reset();
         },
         (error) => {
-          this.snackBar.open('Error al crear la categoría', 'Cerrar', { duration: 3000 });
+          this.snackBar.open('Error creating the category', 'Close', { duration: 3000 });
           console.error(error);
         }
       );
