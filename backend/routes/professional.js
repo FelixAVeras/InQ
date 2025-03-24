@@ -25,6 +25,15 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/category/:categoryId', async (req, res) => {
+    try {
+      const professionals = await Professional.find({ category: req.params.categoryId });
+      res.send(professionals);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+});
+
 // Crear un nuevo profesional
 router.post('/', async (req, res) => {
     try {
