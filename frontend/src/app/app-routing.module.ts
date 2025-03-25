@@ -6,9 +6,13 @@ import { CustomerComponent } from './customer/customer.component';
 import { ProfessionalComponent } from './professional/professional.component';
 import { CategoryComponent } from './category/category.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
-  { path:'', redirectTo:'dashboard', pathMatch:'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path:'dashboard', component: DashboardComponent },
   { path:'appointments', component: AppointmentComponent },
   { path:'customers', component: CustomerComponent },

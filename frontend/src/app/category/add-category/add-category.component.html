@@ -1,17 +1,33 @@
 <div class="grid-container">
   <h2>Add Category</h2>
 
+  <button mat-raised-button color="accent" (click)="goBack()" class="backButton">
+    Volver
+  </button>
+
+  <br>
+
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Name</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>Categoría Principal (Dejar en blanco si es una categoría principal)</mat-label>
+      <mat-select formControlName="parentCategory">
+        <mat-option [value]="null">Ninguna (Categoría Principal)</mat-option>
+        <mat-option *ngFor="let parentCategory of parentCategories$ | async" [value]="parentCategory._id">
+          {{ parentCategory.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre de la Categoría/Subcategoría</mat-label>
       <input matInput formControlName="name">
       <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
-        The name is required
+        El nombre es obligatorio
       </mat-error>
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
+      <mat-label>Descripción</mat-label>
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
   

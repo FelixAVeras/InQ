@@ -25,6 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { MatInputModule } from '@angular/material/input';
     CustomerComponent,
     ProfessionalComponent,
     CategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSnackBarModule,
     MatInputModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

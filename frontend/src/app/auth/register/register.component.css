@@ -1,0 +1,64 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    background-color: #f4f4f4; /* Un fondo suave para mejor contraste */
+  }
+
+  .register-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    margin-right: 20px;
+  }
+
+  .register-header h1 {
+    color: #3f51b5; /* Un color primario para el título */
+    margin-bottom: 5px;
+    font-size: 34px;
+  }
+
+  .register-header p {
+    font-size: 1.1em;
+    color: #777;
+  }
+
+  .register-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Estirar los elementos para que ocupen el ancho */
+    width: 350px; /* Ancho fijo del formulario */
+  }
+
+  .mat-form-field {
+    margin-bottom: 20px;
+  }
+
+  .register-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .register-actions button {
+    margin-bottom: 10px;
+    width: 100%; /* El botón ocupa todo el ancho del contenedor */
+  }
+
+  .register-actions p {
+    margin-top: 10px;
+  }
+
+  .register-actions a {
+    color: #3f51b5;
+    text-decoration: none;
+  }
+
+  .register-actions a:hover {
+    text-decoration: underline;
+  }

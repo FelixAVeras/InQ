@@ -1,11 +1,17 @@
 <div class="grid-container">
   <h2>Category</h2>
 
-  <a routerLink="/add-category" mat-button color="primary">Add</a>
+  <a routerLink="/add-category" mat-raised-button color="accent">Add</a>
 
-  <mat-list role="list">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/" *ngFor="let category of categories" class="list_item">
+      {{ category.name }}
+    </a>
+  </mat-nav-list>
+
+  <!-- <mat-list role="list">
     <mat-list-item  *ngFor="let category of categories" role="listitem">
       {{ category.name }} - {{ category.description }}
     </mat-list-item>
-  </mat-list>
+  </mat-list> -->
 </div>
