@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const appointmentsRouter = require('./routes/appointment');
 const customersRouter = require('./routes/customer');
 const professionalsRouter = require('./routes/professional');
+const categoriesRouter = require('./routes/category');
 
 const app = express();
 const port = 3000;
@@ -36,6 +37,7 @@ mongoose.connect(urlAtlas, {
 app.use('/api/appointments', appointmentsRouter);
 app.use('/api/customers', customersRouter);
 app.use('/api/professionals', professionalsRouter);
+app.use('/api/categories', categoriesRouter);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
