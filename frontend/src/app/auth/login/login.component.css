@@ -14,9 +14,14 @@
   }
 
   .login-header h1 {
-    color: #3f51b5; /* Un color primario para el título */
+    color: #673ab7; /* Un color primario para el título */
     margin-bottom: 5px;
     font-size: 34px;
+  }
+
+  .login-header p {
+    font-size: 1.1em;
+    color: #777;
   }
 
   .login-form {

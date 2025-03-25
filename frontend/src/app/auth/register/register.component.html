@@ -5,45 +5,45 @@
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
       <mat-form-field appearance="outline">
-        <mat-label>Nombre de Usuario</mat-label>
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="registerForm.get('name')?.hasError('required')">The full name is required.</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
         <input matInput formControlName="username" required>
-        <mat-error *ngIf="registerForm.get('username')?.hasError('required')">El nombre de usuario es obligatorio.</mat-error>
+        <mat-error *ngIf="registerForm.get('username')?.hasError('required')">The username is required.</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
+        <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" required>
-        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">La contraseña es obligatoria.</mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">The password is required.</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="outline">
-        <mat-label>Rol</mat-label>
+        <mat-label>Role</mat-label>
         <mat-select formControlName="role" required>
           <mat-option *ngFor="let role of roles" [value]="role">{{ role | titlecase }}</mat-option>
         </mat-select>
-        <mat-error *ngIf="registerForm.get('role')?.hasError('required')">El rol es obligatorio.</mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre Completo</mat-label>
-        <input matInput formControlName="name" required>
-        <mat-error *ngIf="registerForm.get('name')?.hasError('required')">El nombre es obligatorio.</mat-error>
+        <mat-error *ngIf="registerForm.get('role')?.hasError('required')">The role is required.</mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="outline" *ngIf="isProfessional">
-        <mat-label>Categoría</mat-label>
+        <mat-label>Category</mat-label>
         <input type="text" matInput formControlName="category" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let category of filteredCategories | async" [value]="category.name">
             {{ category.name }}
           </mat-option>
         </mat-autocomplete>
-        <mat-error *ngIf="registerForm.get('category')?.hasError('required')">La Categoría es obligatoria para profesionales.</mat-error>
+        <mat-error *ngIf="registerForm.get('category')?.hasError('required')">The Category is required.</mat-error>
       </mat-form-field>
   
       <div class="register-actions">
-        <button mat-raised-button color="primary" type="submit">Registrarse</button>
-        <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a></p>
+        <button mat-raised-button color="primary" type="submit">Register User</button>
+        <p>If you have an account? <a routerLink="/login">Login Here</a></p>
       </div>
     </form>
   </div>
