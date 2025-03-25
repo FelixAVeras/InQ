@@ -32,13 +32,15 @@ export class LoginComponent {
           this.authService.saveUserId(response.userId);
           console.log('Login exitoso', response);
           // Redirigir según el rol
-          if (response.role === 'admin') {
+          /*if (response.role === 'admin') {
             this.router.navigate(['/admin']); // Reemplaza '/admin' con tu ruta de administrador
           } else if (response.role === 'professional') {
-            this.router.navigate(['/professional']); // Reemplaza '/professional' con tu ruta de profesional
+            this.router.navigate(['/dashboard']); // Reemplaza '/professional' con tu ruta de profesional
           } else {
-            this.router.navigate(['/client']); // Reemplaza '/client' con tu ruta de cliente
-          }
+            this.router.navigate(['/dashboard']); // Reemplaza '/client' con tu ruta de cliente
+          }*/
+
+          this.router.navigate(['/dashboard']);
         },
         error => {
           console.error('Error durante el login', error);
