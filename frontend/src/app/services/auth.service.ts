@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class AuthService {
     login(credentials: any): Observable<any> {
       return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
         // Puedes agregar lógica aquí para actualizar isLoggedInSubject al recibir un token
+        tap((response: any) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
+        })
       );
     }
   
@@ -78,4 +83,18 @@ export class AuthService {
     private checkLoggedIn(): boolean {
       return !!localStorage.getItem(this.authTokenKey);
     }
+
+  getUser() {
+    return JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
+  getUserRole(): string {
+    const user = this.getUser();
+    return user?.role || '';
+  }
+
+  getUserName(): string {
+    const user = this.getUser();
+    return user?.username || 'Usuario';
+  }
 }

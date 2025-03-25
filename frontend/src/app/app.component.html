@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" *ngIf="showSidenav">
+<!-- <mat-sidenav-container class="sidenav-container" *ngIf="showSidenav">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -27,7 +27,54 @@
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container class="sidenav-container" *ngIf="showSidenav">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    
+    <mat-toolbar>Menú</mat-toolbar>
+    <mat-nav-list>
+      <!-- Si el usuario es profesional -->
+      <ng-container *ngIf="userRole === 'professional'">
+        <a mat-list-item routerLink="/" routerLinkActive="active">Dashboard</a>
+        <a mat-list-item routerLink="/appointments" routerLinkActive="active">Mis Citas</a>
+      </ng-container>
+
+      <!-- Si el usuario es cliente -->
+      <ng-container *ngIf="userRole === 'client'">
+        <a mat-list-item routerLink="/categories" routerLinkActive="active">Categorías</a>
+        <a mat-list-item routerLink="/appointments" routerLinkActive="active">Mis Citas</a>
+      </ng-container>
+
+      <a mat-list-item (click)="logout()">Cerrar sesión</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>InQ - Appointment System</span>
+
+      <!-- Nombre del usuario a la derecha -->
+      <span class="spacer"></span>
+      <span *ngIf="userName">{{ userName }}</span>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
+
 
 <div class="login-register-wrapper" *ngIf="!isUserLogged">
   <router-outlet></router-outlet>

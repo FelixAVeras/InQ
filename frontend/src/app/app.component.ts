@@ -18,7 +18,10 @@ export class AppComponent implements OnInit {
     );
 
   isUserLogged: boolean = false;
-  showSidenav: boolean = false; // Controlar la visibilidad del sidenav
+  showSidenav: boolean = false;
+
+  userRole: string | null = null;
+  userName: string | null = null;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -34,8 +37,23 @@ export class AppComponent implements OnInit {
         this.showSidenav = this.isUserLogged && this.router.url !== '/login' && this.router.url !== '/register';
       }
     });
+    
     this.isUserLogged = this.authService.isAuthenticated();
     this.showSidenav = this.isUserLogged && this.router.url !== '/login' && this.router.url !== '/register';
+
+    const user = this.authService.getUser();
+    
+    if (user) {
+      this.userRole = this.authService.getUserRole();
+      this.userName = this.authService.getUserName();
+
+      console.log(this.userRole);
+      console.log(this.userName);
+    }
+  }
+
+  getUser() {
+    return JSON.parse(localStorage.getItem('user') || '{}'); // Obtiene el usuario desde el localStorage
   }
 
   logout(): void {
