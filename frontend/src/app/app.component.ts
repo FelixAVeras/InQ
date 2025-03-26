@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   isUserLogged: boolean = false;
   showSidenav: boolean = false;
 
+  userFullname: string | null = null;
   userRole: string | null = null;
   userName: string | null = null;
 
@@ -38,34 +39,24 @@ export class AppComponent implements OnInit {
       }
     });
     
-    this.isUserLogged = this.authService.isAuthenticated();
-    this.showSidenav = this.isUserLogged && this.router.url !== '/login' && this.router.url !== '/register';
-
     const user = this.authService.getUser();
     
     if (user) {
       this.userRole = this.authService.getUserRole();
       this.userName = this.authService.getUserName();
+      this.userFullname = this.authService.getFullName();
 
-      console.log(this.userRole);
-      console.log(this.userName);
+      console.log('Rol del usuario:', this.userRole);
+      console.log('Nombre del usuario:', this.userName);
+      console.log('Nombre:', this.userFullname);
     }
-
-    console.log('Rol del usuario:', this.userRole);
-
-    
-  }
-
-  getUser() {
-    return JSON.parse(localStorage.getItem('user') || '{}'); // Obtiene el usuario desde el localStorage
   }
 
   logout(): void {
-    this.authService.removeToken();
-    //this.authService.removeRole();
-    this.authService.removeUserId();
+    this.authService.logout();
+
     this.isUserLogged = false;
-    this.showSidenav = false;
+    this.showSidenav = false; 
     this.router.navigate(['/login']);
   }
 }

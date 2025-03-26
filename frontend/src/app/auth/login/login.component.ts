@@ -32,7 +32,7 @@ export class LoginComponent {
           //this.authService.saveUserId(response.userId);
           console.log('Login exitoso', response);
 
-          console.log('rol: ', response.role);
+          console.log('rol: ', response.user.role);
           // Redirigir según el rol
           /*if (response.role === 'admin') {
             this.router.navigate(['/admin']); // Reemplaza '/admin' con tu ruta de administrador

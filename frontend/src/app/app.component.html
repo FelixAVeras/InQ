@@ -40,16 +40,16 @@
       <!-- Si el usuario es profesional -->
       <ng-container *ngIf="userRole === 'professional'">
         <a mat-list-item routerLink="/" routerLinkActive="active">Dashboard</a>
-        <a mat-list-item routerLink="/appointments" routerLinkActive="active">Mis Citas</a>
+        <a mat-list-item routerLink="/appointments" routerLinkActive="active">My Appointments</a>
       </ng-container>
 
       <!-- Si el usuario es cliente -->
       <ng-container *ngIf="userRole === 'client'">
-        <a mat-list-item routerLink="/categories" routerLinkActive="active">Categorías</a>
-        <a mat-list-item routerLink="/appointments" routerLinkActive="active">Mis Citas</a>
+        <a mat-list-item routerLink="/categories" routerLinkActive="active">Categories</a>
+        <a mat-list-item routerLink="/appointments" routerLinkActive="active">My Appointments</a>
       </ng-container>
 
-      <a mat-list-item (click)="logout()">Cerrar sesión</a>
+      <a mat-list-item (click)="logout()">Sign Out</a>
     </mat-nav-list>
 
   </mat-sidenav>

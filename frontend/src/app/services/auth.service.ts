@@ -28,11 +28,10 @@ export class AuthService {
   
     login(credentials: any): Observable<any> {
       return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-        // Puedes agregar lógica aquí para actualizar isLoggedInSubject al recibir un token
         tap((response: any) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
-
+          localStorage.setItem('role', JSON.stringify(response.user.role))
           this.userSubject.next(response.user); 
         })
       );
@@ -46,19 +45,13 @@ export class AuthService {
     }
   }
   
-    getToken(): string | null {
-      return localStorage.getItem('token');
-    }
-  
-    saveToken(token: string): void {
-      //localStorage.setItem(this.authTokenKey, token);
-      this.isLoggedInSubject.next(true); // Actualizar el estado al guardar el token
-    }
-  
-    removeToken(): void {
-      localStorage.removeItem('token');
-      this.isLoggedInSubject.next(false); // Actualizar el estado al eliminar el token
-    }
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  saveToken(token: string): void {
+    this.isLoggedInSubject.next(true);
+  }
   
     /*getRole(): string | null {
       return localStorage.getItem(this.userRoleKey);
@@ -79,40 +72,47 @@ export class AuthService {
     saveUserId(userId: string): void {
       localStorage.setItem(this.userIdKey, userId);
     }*/
-  
-    removeUserId(): void {
-      localStorage.removeItem('user');
-    }
-  
-    isAuthenticated(): boolean {
-      return this.isLoggedInSubject.value;
-    }
-  
-    logout(): void {
-      this.removeToken();
-      //this.removeRole();
-      this.removeUserId();
+    
+  isAuthenticated(): boolean {
+    return this.isLoggedInSubject.value;
+  }
 
-      this.userSubject.next(null);
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
 
-      this.router.navigate(['/login']); // Redirigir al login al cerrar sesión
-    }
-  
-    private checkLoggedIn(): boolean {
-      return !!localStorage.getItem('token');
-    }
+    this.userSubject.next(null);
+    this.isLoggedInSubject.next(false);
+
+    // this.router.navigate(['/login']);
+  }
+
+  private checkLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
   getUser() {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return user && user.role ? user : null;
   }
 
   getUserRole(): string {
     const user = this.getUser();
-    return user?.role || '';
+
+    return user ? user.role : '';
   }
 
   getUserName(): string {
     const user = this.getUser();
-    return user?.username || 'Usuario';
+    
+    return user ? user.username : '';
+  }
+
+  getFullName(): string {
+    const user = this.getUser();
+
+    return user ? user.fullname : '';
   }
 }
