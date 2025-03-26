@@ -11,11 +11,16 @@ export class AuthService {
     private apiUrl = '/api/auth';
     private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoggedIn());
     public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
-    private authTokenKey = 'authToken';
+    //private authTokenKey = 'authToken';
     private userRoleKey = 'userRole';
     private userIdKey = 'userId';
+
+    userSubject = new BehaviorSubject<any>(null);
+    user$ = this.userSubject.asObservable();
   
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router) { 
+      this.loadUserFromStorage();
+    }
   
     register(userData: any): Observable<any> {
       return this.http.post(`${this.apiUrl}/register`, userData);
@@ -27,25 +32,35 @@ export class AuthService {
         tap((response: any) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
+
+          this.userSubject.next(response.user); 
         })
       );
     }
+
+  loadUserFromStorage() {
+    const userStorage = localStorage.getItem('user');
+
+    if (userStorage) {
+      this.userSubject.next(JSON.parse(userStorage));
+    }
+  }
   
     getToken(): string | null {
-      return localStorage.getItem(this.authTokenKey);
+      return localStorage.getItem('token');
     }
   
     saveToken(token: string): void {
-      localStorage.setItem(this.authTokenKey, token);
+      //localStorage.setItem(this.authTokenKey, token);
       this.isLoggedInSubject.next(true); // Actualizar el estado al guardar el token
     }
   
     removeToken(): void {
-      localStorage.removeItem(this.authTokenKey);
+      localStorage.removeItem('token');
       this.isLoggedInSubject.next(false); // Actualizar el estado al eliminar el token
     }
   
-    getRole(): string | null {
+    /*getRole(): string | null {
       return localStorage.getItem(this.userRoleKey);
     }
   
@@ -63,10 +78,10 @@ export class AuthService {
   
     saveUserId(userId: string): void {
       localStorage.setItem(this.userIdKey, userId);
-    }
+    }*/
   
     removeUserId(): void {
-      localStorage.removeItem(this.userIdKey);
+      localStorage.removeItem('user');
     }
   
     isAuthenticated(): boolean {
@@ -75,13 +90,16 @@ export class AuthService {
   
     logout(): void {
       this.removeToken();
-      this.removeRole();
+      //this.removeRole();
       this.removeUserId();
+
+      this.userSubject.next(null);
+
       this.router.navigate(['/login']); // Redirigir al login al cerrar sesión
     }
   
     private checkLoggedIn(): boolean {
-      return !!localStorage.getItem(this.authTokenKey);
+      return !!localStorage.getItem('token');
     }
 
   getUser() {

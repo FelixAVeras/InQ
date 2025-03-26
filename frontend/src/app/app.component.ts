@@ -50,6 +50,10 @@ export class AppComponent implements OnInit {
       console.log(this.userRole);
       console.log(this.userName);
     }
+
+    console.log('Rol del usuario:', this.userRole);
+
+    
   }
 
   getUser() {
@@ -58,7 +62,7 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.authService.removeToken();
-    this.authService.removeRole();
+    //this.authService.removeRole();
     this.authService.removeUserId();
     this.isUserLogged = false;
     this.showSidenav = false;
