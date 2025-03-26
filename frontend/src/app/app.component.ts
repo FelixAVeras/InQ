@@ -39,17 +39,23 @@ export class AppComponent implements OnInit {
       }
     });
     
-    const user = this.authService.getUser();
-    
-    if (user) {
-      this.userRole = this.authService.getUserRole();
-      this.userName = this.authService.getUserName();
-      this.userFullname = this.authService.getFullName();
+    // const user = this.authService.getUser();
 
-      console.log('Rol del usuario:', this.userRole);
-      console.log('Nombre del usuario:', this.userName);
-      console.log('Nombre:', this.userFullname);
-    }
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userRole = this.authService.getUserRole();
+        this.userName = this.authService.getUserName();
+        this.userFullname = this.authService.getFullName();
+
+        console.log('Rol del usuario:', this.userRole);
+        console.log('Nombre del usuario:', this.userName);
+        console.log('Nombre:', this.userFullname);
+      } else {
+        this.userRole = null;
+        this.userName = null;
+        this.userFullname = null
+      }
+    });
   }
 
   logout(): void {
