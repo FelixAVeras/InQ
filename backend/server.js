@@ -8,8 +8,6 @@ require('dotenv').config();
 // Imports routes
 const authRouter = require('./routes/auth');
 const appointmentsRouter = require('./routes/appointment');
-const customersRouter = require('./routes/customer');
-const professionalsRouter = require('./routes/professional');
 const categoriesRouter = require('./routes/category');
 
 const app = express();
@@ -39,8 +37,6 @@ mongoose.connect(urlAtlas, {
 // Usar las rutas de las citas
 app.use('/api/auth', authRouter);
 app.use('/api/appointments', appointmentsRouter);
-app.use('/api/customers', customersRouter);
-app.use('/api/professionals', professionalsRouter);
 app.use('/api/categories', categoriesRouter);
 
 // Ruta de prueba

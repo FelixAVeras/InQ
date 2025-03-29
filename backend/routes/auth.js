@@ -9,9 +9,9 @@ require('dotenv').config();
 // Registrar un usuario
 router.post('/register', async (req, res) => {
     try {
-        const { username, password, role, email, fullname } = req.body;
+        const { fullname, password, role, email } = req.body;
 
-        let user = await User.findOne({ username });
+        let user = await User.findOne({ email });
         if (user) {
             return res.status(400).send('El usuario ya existe');
         }
@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         user = new User({
-            username,
+            fullname,
             password: hashedPassword,
             role,
             email
@@ -41,9 +41,9 @@ router.post('/register', async (req, res) => {
 // Iniciar sesión
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
-        let user = await User.findOne({ username });
+        let user = await User.findOne({ email });
         
         if (!user) {
             return res.status(400).send('Usuario no encontrado');
@@ -62,25 +62,12 @@ router.post('/login', async (req, res) => {
             token, 
             user: {
                 id: user._id,
-                username: user.username,
+                email: user.email,
                 role: user.role
             } 
         });
     } catch (error) {
         console.error(error);
-        res.status(500).send(error);
-    }
-});
-
-// Obtener usuario por ID
-router.get('/:id', async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id).select('-password');
-        if (!user) {
-            return res.status(404).send('Usuario no encontrado');
-        }
-        res.send(user);
-    } catch (error) {
         res.status(500).send(error);
     }
 });
