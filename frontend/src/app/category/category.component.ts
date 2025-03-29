@@ -9,6 +9,7 @@ import { CategoryService } from '../services/category.service';
 export class CategoryComponent implements OnInit {
 
   categories: any[] = [];
+  filtro: string = '';
 
   constructor(private categoryService: CategoryService) { }
 

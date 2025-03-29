@@ -21,7 +21,7 @@ import { ProfessionalComponent } from './professional/professional.component';
 import { CategoryComponent } from './category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
@@ -29,6 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FilterCategoriesPipe } from './pipes/filter-categories.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     CategoryComponent,
     AddCategoryComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FilterCategoriesPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSnackBarModule,
     MatInputModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
