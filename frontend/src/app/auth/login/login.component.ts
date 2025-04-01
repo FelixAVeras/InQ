@@ -28,25 +28,19 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         response => {
           this.authService.saveToken(response.token);
-          //this.authService.saveRole(response.role);
-          //this.authService.saveUserId(response.userId);
+          
           console.log('Login exitoso', response);
-
           console.log('rol: ', response.user.role);
-          // Redirigir según el rol
-          /*if (response.role === 'admin') {
-            this.router.navigate(['/admin']); // Reemplaza '/admin' con tu ruta de administrador
-          } else if (response.role === 'professional') {
-            this.router.navigate(['/dashboard']); // Reemplaza '/professional' con tu ruta de profesional
-          } else {
-            this.router.navigate(['/dashboard']); // Reemplaza '/client' con tu ruta de cliente
-          }*/
+          
+          if (response.user.role === "client") {
+            this.router.navigate(['/appointments']);
+          }
 
           this.router.navigate(['/dashboard']);
         },
         error => {
           console.error('Error durante el login', error);
-          this.errorMessage = 'Credenciales inválidas.'; // Muestra un mensaje de error al usuario
+          this.errorMessage = 'Credenciales inválidas.';
         }
       );
     }
