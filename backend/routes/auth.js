@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -9,7 +9,7 @@ require('dotenv').config();
 // Registrar un usuario
 router.post('/register', async (req, res) => {
     try {
-        const { fullname, password, role, email } = req.body;
+        const { fullname, password, role, email, category } = req.body;
 
         let user = await User.findOne({ email });
         if (user) {
@@ -23,7 +23,8 @@ router.post('/register', async (req, res) => {
             fullname,
             password: hashedPassword,
             role,
-            email
+            email,
+            category
         });
 
         await user.save();

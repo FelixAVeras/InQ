@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent {
-
+  filtro: string = '';
 }

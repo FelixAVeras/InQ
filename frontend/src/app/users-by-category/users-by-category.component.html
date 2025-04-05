@@ -1,0 +1,17 @@
+<div class="grid-container">
+  <h2>Usuarios de la categoría</h2>
+
+  <div class="user-card-container">
+    <mat-card *ngFor="let user of users" class="user-card">
+      <mat-card-header>
+        <mat-card-title>{{ user.fullname }}</mat-card-title>
+        <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <p><strong>Teléfono:</strong> {{ user.phone || 'N/A' }}</p>
+        <p><strong>Rol:</strong> {{ user.role || 'Sin rol' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

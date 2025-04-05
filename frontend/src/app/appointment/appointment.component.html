@@ -1,3 +1,12 @@
 <div class="grid-container">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque fugit tempore, distinctio quam vel voluptatum, ea accusamus obcaecati vitae architecto officiis nostrum provident laborum. Hic ipsum praesentium consectetur totam voluptate?
+  <h2>Appointments</h2>
+
+  <div class="filter-container">
+    <mat-form-field class="filter-input">
+      <mat-label>Filtrar</mat-label>
+      <input matInput placeholder="Buscar categoría..." [(ngModel)]="filtro">
+    </mat-form-field>
+
+    <a routerLink="/add-category" mat-raised-button color="accent">Add</a>
+  </div>
 </div>

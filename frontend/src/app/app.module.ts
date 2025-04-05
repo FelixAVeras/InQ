@@ -30,6 +30,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FilterCategoriesPipe } from './pipes/filter-categories.pipe';
+import { UsersByCategoryComponent } from './users-by-category/users-by-category.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FilterCategoriesPipe } from './pipes/filter-categories.pipe';
     AddCategoryComponent,
     LoginComponent,
     RegisterComponent,
-    FilterCategoriesPipe
+    FilterCategoriesPipe,
+    UsersByCategoryComponent
   ],
   imports: [
     BrowserModule,

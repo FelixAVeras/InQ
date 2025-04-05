@@ -29,9 +29,6 @@ export class LoginComponent {
         response => {
           this.authService.saveToken(response.token);
           
-          console.log('Login exitoso', response);
-          console.log('rol: ', response.user.role);
-          
           if (response.user.role === "client") {
             this.router.navigate(['/appointments']);
           }
@@ -43,6 +40,8 @@ export class LoginComponent {
           this.errorMessage = 'Credenciales inválidas.';
         }
       );
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 }

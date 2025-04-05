@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Category = require('../models/category');
+const User = require('../models/user');
 
 // Obtener todas las categorías
 router.get('/', async (req, res) => {
@@ -30,6 +32,27 @@ router.post('/', async (req, res) => {
     res.status(201).send(category);
   } catch (err) {
     res.status(400).send(err);
+  }
+});
+
+// Obtener usuarios por categoría
+router.get('/:categoryId/users', async (req, res) => {
+  console.log('Category ID recibido:', req.params.categoryId);
+  
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.categoryId)) {
+      return res.status(400).send({ message: 'ID de categoría inválido' });
+    }
+    
+    const users = await User.find({ category: req.params.categoryId });
+    res.send(users);
+  } catch (err) {
+    console.error('Error al obtener usuarios por categoría:', err);
+      
+    res.status(500).send({
+      message: 'Error al obtener usuarios por categoría',
+      error: err.message || 'Error desconocido'
+    });
   }
 });
 

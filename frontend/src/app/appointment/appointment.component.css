@@ -1,1 +1,20 @@
 .grid-container { margin: 20px; }
+
+.list_item:hover { color: blueviolet; }
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.filter-input {
+  /* flex: 1; */
+  width: 55%;
+}
+
+a[mat-raised-button] {
+  white-space: nowrap;
+}

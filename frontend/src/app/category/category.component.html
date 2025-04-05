@@ -11,7 +11,7 @@
   </div>
 
   <mat-nav-list>
-    <a mat-list-item routerLink="/" *ngFor="let category of categories | filterCategories:filtro" class="list_item">
+    <a mat-list-item [routerLink]="['/category', category._id, 'users']" *ngFor="let category of categories | filterCategories:filtro" class="list_item">
       {{ category.name }}
     </a>
   </mat-nav-list>

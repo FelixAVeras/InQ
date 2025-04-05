@@ -18,11 +18,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 'client' // Establece un rol por defecto
     },
-    // Otros campos comunes para todos los usuarios (opcional)
     email: {
         type: String,
         trim: true,
         lowercase: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
     createdAt: {
         type: Date,
