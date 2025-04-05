@@ -1,0 +1,16 @@
+.grid-container { margin: 20px; }
+
+.day-card {
+  margin-bottom: 1rem;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.customCard {
+  padding: 10px;
+}

@@ -9,6 +9,7 @@ require('dotenv').config();
 const authRouter = require('./routes/auth');
 const appointmentsRouter = require('./routes/appointment');
 const categoriesRouter = require('./routes/category');
+const availabilityRouter = require('./routes/availability');
 
 const app = express();
 const port = 3000;
@@ -38,6 +39,7 @@ mongoose.connect(urlAtlas, {
 app.use('/api/auth', authRouter);
 app.use('/api/appointments', appointmentsRouter);
 app.use('/api/categories', categoriesRouter);
+app.use('/api/availability', availabilityRouter);
 
 // Ruta de prueba
 app.get('/', (req, res) => {

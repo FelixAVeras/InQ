@@ -1,0 +1,30 @@
+<div class="grid-container">
+  <div *ngIf="loading">Cargando disponibilidad...</div>
+
+<div *ngFor="let day of weekdays; let i = index" class="day-card">
+  <mat-card class="customCard">
+    <mat-card-title>{{ day }}</mat-card-title>
+
+    <div *ngFor="let range of schedule[i] || []; let j = index" class="time-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Desde</mat-label>
+        <input matInput type="time" [(ngModel)]="range.from">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hasta</mat-label>
+        <input matInput type="time" [(ngModel)]="range.to">
+      </mat-form-field>
+
+      <button mat-icon-button color="warn" (click)="removeTimeRange(i, j)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+    <button mat-stroked-button color="primary" (click)="addTimeRange(i)">Agregar horario</button>
+    <button mat-flat-button color="accent" (click)="saveDay(i)">Guardar</button>
+    <button mat-flat-button color="warn" (click)="deleteDay(i)">Eliminar</button>
+  </mat-card>
+</div>
+
+</div>

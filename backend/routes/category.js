@@ -37,8 +37,6 @@ router.post('/', async (req, res) => {
 
 // Obtener usuarios por categoría
 router.get('/:categoryId/users', async (req, res) => {
-  console.log('Category ID recibido:', req.params.categoryId);
-  
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.categoryId)) {
       return res.status(400).send({ message: 'ID de categoría inválido' });
