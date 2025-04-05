@@ -28,6 +28,9 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         response => {
           this.authService.saveToken(response.token);
+
+          const token = response.token;
+          localStorage.setItem('token', token);
           
           if (response.user.role === "client") {
             this.router.navigate(['/appointments']);

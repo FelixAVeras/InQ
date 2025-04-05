@@ -41,12 +41,21 @@ export class ProfessionalScheduleComponent implements OnInit {
 
   saveDay(day: number) {
     const timeRanges = this.schedule[day].filter(t => t.from && t.to);
+
+    console.log('Datos a guardar:', { weekday: day, timeRanges });
   
     if (!this.validateTimeRanges(timeRanges)) return;
   
-    this.availabilityService.saveAvailability({ weekday: day, timeRanges }).subscribe(() => {
-      this.snackBar.open('Disponibilidad guardada correctamente.', 'OK', { duration: 2000 });
-    });
+    this.availabilityService.saveAvailability({ weekday: day, timeRanges }).subscribe(
+      (response) => {
+        this.snackBar.open('Disponibilidad guardada correctamente.', 'OK', { duration: 2000 });
+      },
+      (error) => {
+        console.error('Error al guardar disponibilidad:', error); // Agrega esto para depurar
+        this.snackBar.open('Error al guardar disponibilidad.', 'Cerrar', { duration: 3000 });
+      }
+    );
+    
   }
   
   deleteDay(day: number) {

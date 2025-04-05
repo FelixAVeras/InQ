@@ -6,6 +6,12 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
+// Verifica si la variable JWT_SECRET está correctamente cargada
+if (!process.env.JWT_SECRET) {
+    console.error('La clave secreta JWT no está definida en las variables de entorno');
+    process.exit(1);  // Termina la ejecución si la clave secreta no está definida
+}
+
 // Registrar un usuario
 router.post('/register', async (req, res) => {
     try {
@@ -57,6 +63,7 @@ router.post('/login', async (req, res) => {
         }
 
         const payload = { id: user.id, role: user.role };
+
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.send({ 
