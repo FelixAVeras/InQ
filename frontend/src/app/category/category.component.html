@@ -7,12 +7,24 @@
       <input matInput placeholder="Buscar categoría..." [(ngModel)]="filtro">
     </mat-form-field>
 
-    <a routerLink="/add-category" mat-raised-button color="accent">Add</a>
+    <a *ngIf="userRole === 'admin' || userRole === 'professional'" routerLink="/add-category" mat-raised-button color="accent">Add</a>
+
   </div>
 
-  <mat-nav-list>
-    <a mat-list-item [routerLink]="['/category', category._id, 'users']" *ngFor="let category of categories | filterCategories:filtro" class="list_item">
-      {{ category.name }}
-    </a>
-  </mat-nav-list>
+  <div class="user-card-container">
+    <mat-card *ngFor="let category of categories" class="user-card">
+      <mat-card-header>
+        <mat-card-title>{{ category.name }}</mat-card-title>
+        <mat-card-subtitle>Profesionales en esta categoria</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <!-- <p><strong>Teléfono:</strong> {{ user.phone || 'N/A' }}</p>
+        <p><strong>Rol:</strong> {{ user.role || 'Sin rol' }}</p> -->
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a [routerLink]="['/category', category._id, 'users']" mat-button color="primary">Ver Disponibles</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

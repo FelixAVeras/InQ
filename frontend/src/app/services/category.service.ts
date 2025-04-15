@@ -22,4 +22,10 @@ export class CategoryService {
   getUsersByCategory(categoryId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlApi}/${categoryId}/users`);
   }
+
+  getUserRole() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+
+    return user?.role || '';
+  }
 }

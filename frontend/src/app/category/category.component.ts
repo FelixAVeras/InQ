@@ -11,9 +11,13 @@ export class CategoryComponent implements OnInit {
   categories: any[] = [];
   filtro: string = '';
 
+  userRole: string = '';
+
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.userRole = this.categoryService.getUserRole();
+    
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
 

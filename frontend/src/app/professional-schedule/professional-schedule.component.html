@@ -21,9 +21,11 @@
       </button>
     </div>
 
-    <button mat-stroked-button color="primary" (click)="addTimeRange(i)">Agregar horario</button>
-    <button mat-flat-button color="accent" (click)="saveDay(i)">Guardar</button>
-    <button mat-flat-button color="warn" (click)="deleteDay(i)">Eliminar</button>
+    <div class="btn-group">
+      <button mat-stroked-button color="primary" (click)="addTimeRange(i)">Agregar horario</button>
+      <button mat-flat-button color="accent" (click)="saveDay(i)">Guardar</button>
+      <button mat-flat-button color="warn" (click)="deleteDay(i)">Eliminar</button>
+    </div>
   </mat-card>
 </div>
 

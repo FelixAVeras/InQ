@@ -14,10 +14,14 @@ const { isAuthenticated } = require('../middleware/isAuthenticated');
 // });
 
 // Crear o actualizar un día
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated, async (req, res) => {
   const { weekday, timeRanges } = req.body;
   
-  if (!weekday || !timeRanges || timeRanges.length === 0) {
+  // if (!weekday || !timeRanges || timeRanges.length === 0) {
+  //   return res.status(400).json({ error: 'Debe proporcionar el día y los rangos de tiempo.' });
+  // }
+
+  if (weekday === undefined || !timeRanges || timeRanges.length === 0) {
     return res.status(400).json({ error: 'Debe proporcionar el día y los rangos de tiempo.' });
   }
 
