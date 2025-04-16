@@ -32,6 +32,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FilterCategoriesPipe } from './pipes/filter-categories.pipe';
 import { UsersByCategoryComponent } from './users-by-category/users-by-category.component';
 import { ProfessionalScheduleComponent } from './professional-schedule/professional-schedule.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ProfessionalScheduleComponent } from './professional-schedule/professio
     RegisterComponent,
     FilterCategoriesPipe,
     UsersByCategoryComponent,
-    ProfessionalScheduleComponent
+    ProfessionalScheduleComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

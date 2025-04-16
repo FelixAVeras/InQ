@@ -12,10 +12,14 @@ export class ProfessionalService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<any[]> {
-      return this.http.get<any[]>('/api/categories');
+    return this.http.get<any[]>('/api/categories');
+  }
+
+  getProfessionalById(id: number) {
+    return this.http.get(this.apiUrl + id);
   }
 
   createProfessional(professionalData: any): Observable<any> {
-      return this.http.post(this.apiUrl, professionalData);
+    return this.http.post(this.apiUrl, professionalData);
   }
 }

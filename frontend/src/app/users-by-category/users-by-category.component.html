@@ -5,13 +5,16 @@
     <mat-card *ngFor="let user of users" class="user-card">
       <mat-card-header>
         <mat-card-title>{{ user.fullname }}</mat-card-title>
-        <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+        <mat-card-subtitle>Se unio desde: {{ user.createdAt | date: 'dd-MM-yyyy' }}</mat-card-subtitle>
       </mat-card-header>
-  
+      <!-- <img src="https://placehold.co/84" alt=""> -->
       <mat-card-content>
-        <p><strong>Teléfono:</strong> {{ user.phone || 'N/A' }}</p>
-        <p><strong>Rol:</strong> {{ user.role || 'Sin rol' }}</p>
+        
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary">VER PERFIL</button>
+        <!-- <button mat-button>CONTRATAR</button> -->
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
