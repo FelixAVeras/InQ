@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UsersByCategoryComponent } from './users-by-category/users-by-category.component';
 import { ProfessionalScheduleComponent } from './professional-schedule/professional-schedule.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'/login', pathMatch:'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path:'appointments', component: AppointmentComponent },
   { path:'customers', component: CustomerComponent },
   { path:'professionals', component: ProfessionalComponent },
+  { path:'users/:id', component: UserProfileComponent },
   { path:'categories', component: CategoryComponent },
   { path:'add-category', component: AddCategoryComponent },
   { path:'category/:id/users', component: UsersByCategoryComponent },
